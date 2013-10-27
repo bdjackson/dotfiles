@@ -1,0 +1,11 @@
+altscreen on
+vbell off
+startup_message off
+
+bindkey -k F2 screen
+bindkey -k k9 prev
+bindkey -k k; next
+
+hardstatus alwayslastline
+hardstatus string '%{= ck} %H | %=%-Lw%?%{kw} %n%f %t %{ck}%+Lw %=| %Y-%m-%d %c '
+

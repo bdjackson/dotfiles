@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$SSH_TTY" ]; then
+  echo 'calling bash_profile'
+
+  source ${HOME}/.bash_env
+  source ${HOME}/.bash_aliases
+fi

@@ -1,0 +1,26 @@
+excludeFiles = "*.{so,pyc,o,root}" 
+excludeDirectories = "{lib,bin,.svn,jobTempOutput_*}" 
+
+# Global settings
+tabSize        = 2 
+softTabs       = true 
+showInvisibles = true
+
+# Python settings
+[ source.python ]
+tabSize = 2
+
+# Latex settings
+[ source.latex ]
+spellChecking  = true
+tabSize        = 4
+
+# plain text settings
+[ text.plain ]
+spellChecking = true
+tabSize       = 4
+
+# special per-filetype rules can be specified like so:
+[ *.{txt,md,mdown,markdown,tex,bib} ]
+spellChecking  = true
+tabSize        = 4

@@ -1,0 +1,59 @@
+# on ubuntu, check out the following packages that root is dependant on 
+sudo apt-get install \
+gfortran \
+ncurses-dev \
+libpcre3-dev \
+xlibmesa-glu-dev \
+libglew1.5-dev \
+libftgl-dev \
+libmysqlclient-dev \
+libfftw3-dev \
+cfitsio-dev \
+graphviz-dev \
+libavahi-compat-libdnssd-dev \
+libldap-dev \
+python-dev \
+libxml2-dev \
+libssl-dev \
+libgsl0-dev \
+gfortran-multilib \
+gfortran-doc \
+gfortran-4.4-multilib \
+gfortran-4.4-doc \
+libgfortran3-dbg \
+glew-utils \
+ocaml-findlib \
+libtool-doc gsl-bin \
+build-essential \
+libjpeg62-dev \
+libtiff4-dev \
+libgnutls-dev \
+libgmp3-dev \
+libxmu-dev \
+libpng12-dev \
+libkrb5-dev \
+libgif-dev \
+libgif-dev \
+libiodbc2 \
+libiodbc2-dev
+
+
+# Linux configure
+# configure root instal
+./configure linux --enable-minuit2 --enable-roofit --enable-table --enable-gdml --enable-pgsql --enable-mysql --enable-builtin-zlib --enable-builtin-pcre --enable-builtin-freetype --enable-builtin-glew
+
+# Mac configure (OS X 10.7 + 10.8)
+./configure macosx64 \
+  --enable-python \
+  --with-python-incdir=/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ \
+  --with-python-libdir=/System/Library/Frameworks/Python.framework/Versions/2.7/lib/ \
+  --enable-roofit \
+  --enable-xrootd \
+  --enable-bonjour \
+  --enable-qt \
+  --enable-qtgsi \
+  --enable-ruby
+
+
+# make root
+make 

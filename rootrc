@@ -1,0 +1,2 @@
+Rint.Load:  $(HOME)/code/root/set_palette.C
+Rint.Logon: $(HOME)/code/root/rootlogon.C

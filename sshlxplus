@@ -1,0 +1,2 @@
+echo "Logging into lxplus${1}.cern.ch"
+ssh -Y lxplus${1}.cern.ch
