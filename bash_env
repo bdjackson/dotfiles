@@ -86,7 +86,6 @@ if [ "$ME" = "pennt3" ]; then
   setupATLAS
 fi
 
-
 # ==============================================================================
 # = Start screen
 # ==============================================================================
@@ -240,30 +239,20 @@ if $SETUP_PYTHON ; then
   if [ "$ME" = "afs" ]; then
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if [ $SLC_version = "5" ] && [ $PLATFORM = "x86_64" ]; then
-      if [ $python_version = "2.6" ]; then
-        if [ "$SSH_TTY" ]; then
-          echo " - setting up Python 2.6.5 for SLC5"
-        fi
-        export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5/x86_64-slc5-gcc43-opt/
-      elif [ $python_version = "2.7" ]; then
-        if [ "$SSH_TTY" ]; then
+      if [ "$SSH_TTY" ]; then
+          # echo " - setting up Python 2.6.5 for SLC5"
           echo " - setting up Python 2.7.3 for SLC5"
-        fi
-        export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc47-opt/
       fi
+      # export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5/x86_64-slc5-gcc43-opt/
+      export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc47-opt/
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
-      if [ $python_version = "2.6" ]; then
-        if [ "$SSH_TTY" ]; then
-          echo " - setting up Python 2.6.5 for SLC6"
-        fi
-        export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5/x86_64-slc6-gcc46-opt/
-      elif [ $python_version = "2.7" ]; then
-        if [ "$SSH_TTY" ]; then
-          echo " - setting up Python 2.7.3 for SLC6"
-        fi
-        export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc46-opt/
+      if [ "$SSH_TTY" ]; then
+        # echo " - setting up Python 2.6.5 for SLC6"
+        echo " - setting up Python 2.7.3 for SLC6"
       fi
+      # export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5/x86_64-slc6-gcc46-opt/
+      export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc46-opt/
     fi
     export PATH=$PYTHONDIR/bin:$PATH
     export LD_LIBRARY_PATH=$PYTHONDIR/lib:$LD_LIBRARY_PATH
@@ -371,16 +360,17 @@ if $SETUP_ROOT ; then
   export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
   export PYTHONPATH=$ROOTSYS/pyroot:$ROOTSYS/lib:$PYTHONPATH
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if [ $ME = "afs" ]; then
-    if [ $SLC_version = "5" ]; then
-      export XRDPATH=/afs/cern.ch/sw/lcg/external/xrootd/3.1.0p2/x86_64-slc5-gcc43-opt
-    elif [ $SLC_version = "6" ]; then
-      export XRDPATH=/afs/cern.ch/sw/lcg/external/xrootd/3.1.0p2/x86_64-slc6-gcc46-opt
-    fi
-    export LD_LIBRARY_PATH=$XRDPATH/lib64:$LD_LIBRARY_PATH
-    export PATH=$XRDPATH/bin:$PATH
-  fi
+  ### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  ### # Setup xrootd
+  ### if [ $ME = "afs" ]; then
+  ###   if [ $SLC_version = "5" ]; then
+  ###     export XRDPATH=/afs/cern.ch/sw/lcg/external/xrootd/3.1.0p2/x86_64-slc5-gcc43-opt
+  ###   elif [ $SLC_version = "6" ]; then
+  ###     export XRDPATH=/afs/cern.ch/sw/lcg/external/xrootd/3.1.0p2/x86_64-slc6-gcc46-opt
+  ###   fi
+  ###   export LD_LIBRARY_PATH=$XRDPATH/lib64:$LD_LIBRARY_PATH
+  ###   export PATH=$XRDPATH/bin:$PATH
+  ### fi
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   alias pyroot="python -i -c \"from ROOT import *; import rootlogon;\""
@@ -405,7 +395,6 @@ if [ $ME != "laptop" ] && [ "$ME" != "netbook" ]; then
   export AtlasSetup=/afs/cern.ch/atlas/software/dist/AtlasSetup
   alias asetup='source $AtlasSetup/scripts/asetup.sh'
 fi
-
 
 if [ "$ME" = "laptop" ] || [ "$ME" = "netbook" ] || [ "$SSH_TTY" ]; then
   echo -ne "$NC"
