@@ -20,7 +20,7 @@ git clone git://github.com/scrooloose/snipmate-snippets.git scrooloose_snippets
 
 echo ''
 echo '------------------------------------------------------------'
-echo 'install super tab bundle
+echo 'install super tab bundle'
 git clone git://github.com/ervandew/supertab.git
 
 echo ''
