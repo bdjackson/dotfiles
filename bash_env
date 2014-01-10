@@ -240,10 +240,8 @@ if $SETUP_PYTHON ; then
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if [ $SLC_version = "5" ] && [ $PLATFORM = "x86_64" ]; then
       if [ "$SSH_TTY" ]; then
-          # echo " - setting up Python 2.6.5 for SLC5"
           echo " - setting up Python 2.7.3 for SLC5"
       fi
-      # export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5/x86_64-slc5-gcc43-opt/
       export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc47-opt/
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
@@ -251,7 +249,6 @@ if $SETUP_PYTHON ; then
         # echo " - setting up Python 2.6.5 for SLC6"
         echo " - setting up Python 2.7.3 for SLC6"
       fi
-      # export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5/x86_64-slc6-gcc46-opt/
       export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc46-opt/
     fi
     export PATH=$PYTHONDIR/bin:$PATH
@@ -306,14 +303,8 @@ if $SETUP_NUMPY ; then
     fi
     if [ $SLC_version = "5" ]; then
       echo " - setting up numpy for SLC5"
-      # export PYTHONPATH=/afs/cern.ch/atlas/software/builds/AtlasCore/latest/InstallArea/x86_64-slc5-gcc47-opt/lib/python2.7:$PYTHONPATH
-      # export LD_LIBRARY_PATH=/afs/cern.ch/atlas/software/builds/AtlasCore/latest/InstallArea/x86_64-slc5-gcc47-opt/lib:$LD_LIBRARY_PATH
       export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib/python2.7/site-packages/:$PYTHONPATH
       export LD_LIBRARY_PATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib:$LD_LIBRARY_PATH
-    # elif [ $SLC_version = "6" ]; then
-    #   echo " - setting up numpy for SLC6"
-    #   export PYTHONPATH=/afs/cern.ch/atlas/software/builds/AtlasCore/latest/InstallArea/x86_64-slc6-gcc46-opt/lib/python2.5:$PYTHONPATH
-    #   export LD_LIBRARY_PATH=/afs/cern.ch/atlas/software/builds/AtlasCore/latest/InstallArea/x86_64-slc6-gcc46-opt/lib:$LD_LIBRARY_PATH
     fi
   fi
 fi
@@ -339,8 +330,8 @@ if $SETUP_ROOT ; then
     fi
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif [ $ME = "laptop" ]; then
-    echo " - setting up ROOT 5.32.03 for laptop"
-    export ROOTSYS=/Users/bjackson/local/root_v5.34.09
+    echo " - setting up ROOT 5.34.14 for laptop"
+    export ROOTSYS=/Users/bjackson/local/root_v5.34.14
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif [ $ME = "netbook" ]; then
     echo " - setting up ROOT 5.32.03 for netbook"

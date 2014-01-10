@@ -47,13 +47,34 @@ libiodbc2-dev
   --enable-python \
   --with-python-incdir=/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ \
   --with-python-libdir=/System/Library/Frameworks/Python.framework/Versions/2.7/lib/ \
-  --enable-roofit \
-  --enable-xrootd \
   --enable-bonjour \
+  --enable-builtin-freetype \
+  --enable-builtin-glew \
+  --enable-builtin-pcre \
+  --enable-builtin-zlib \
+  --enable-gdml \
+  --enable-minuit2 \
+  --enable-mysql \
+  --enable-pgsql \
   --enable-qt \
   --enable-qtgsi \
-  --enable-ruby
+  --enable-roofit \
+  --enable-ruby \
+  --enable-table \
+  --enable-xrootd
 
+#   --enable-python \
+#   --with-python-incdir=/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ \
+#   --with-python-libdir=/System/Library/Frameworks/Python.framework/Versions/2.7/lib/ \
+#   --enable-roofit \
+#   --enable-xrootd \
+#   --enable-bonjour \
+#   --enable-qt \
+#   --enable-qtgsi \
+#   --enable-ruby \
+#   --enable-minuit2 \
+#   --enable-table \
+#   --enable-gdml \
 
 # make root
 make 

@@ -163,7 +163,7 @@ set laststatus=2
 "if has("gui_running")
 "  set guifont=Source_Code_Pro_Semibold:h10
 "endif
-set guifont=Source_Code_Pro:h10
+set guifont=Source_Code_Pro:h9
 
 " ------------------------------------------------------------------------------
 "  snipMate setup
