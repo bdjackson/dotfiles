@@ -3,14 +3,14 @@ echo '------------------------------------------------------------'
 echo 'install NERDTree bundle which provides a nice tree structure for viewing files'
 git clone git://github.com/scrooloose/nerdtree.git
 
-echo ''
-echo '------------------------------------------------------------'
-echo 'install commandT bundle used for fast opening of files within a project'
-git clone git://git.wincent.com/command-t.git
-cd command-t/ruby/command-t
-ruby extconf.rb
-make 
-cd - 
+# echo ''
+# echo '------------------------------------------------------------'
+# echo 'install commandT bundle used for fast opening of files within a project'
+# git clone git://git.wincent.com/command-t.git
+# cd command-t/ruby/command-t
+# ruby extconf.rb
+# make 
+# cd - 
 
 echo ''
 echo '------------------------------------------------------------'
