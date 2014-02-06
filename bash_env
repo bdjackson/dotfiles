@@ -203,7 +203,8 @@ if $SETUP_GCC ; then
       if [ "$SSH_TTY" ]; then
         echo " - setting up gcc 4.7 for SLC5"
       fi
-      source /afs/cern.ch/sw/lcg/external/gcc/4.7.2/x86_64-slc5/setup.sh
+      source /afs/cern.ch/sw/lcg/external/gcc/4.3.6/x86_64-slc5/setup.sh
+      # source /afs/cern.ch/sw/lcg/external/gcc/4.7.2/x86_64-slc5/setup.sh
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
       if [ "$SSH_TTY" ]; then
@@ -242,7 +243,8 @@ if $SETUP_PYTHON ; then
       if [ "$SSH_TTY" ]; then
           echo " - setting up Python 2.7.3 for SLC5"
       fi
-      export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc47-opt/
+      export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc43-opt/
+      # export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc47-opt/
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
       if [ "$SSH_TTY" ]; then
@@ -305,10 +307,6 @@ if $SETUP_NUMPY ; then
       echo " - setting up numpy for SLC5"
       export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib/python2.7/site-packages/:$PYTHONPATH
       export LD_LIBRARY_PATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib:$LD_LIBRARY_PATH
-    elif [ $SLC_version = "6" ]; then
-      echo " - setting up numpy for SLC6"
-      export PYTHONPATH=/afs/cern.ch/atlas/software/builds/AtlasCore/latest/InstallArea/x86_64-slc6-gcc46-opt/lib/python2.5:$PYTHONPATH
-      export LD_LIBRARY_PATH=/afs/cern.ch/atlas/software/builds/AtlasCore/latest/InstallArea/x86_64-slc6-gcc46-opt/lib:$LD_LIBRARY_PATH
     fi
   fi
 fi
@@ -324,7 +322,8 @@ if $SETUP_ROOT ; then
       if [ "$SSH_TTY" ]; then
         echo " - setting up ROOT 5.34.09 for SLC5"
       fi
-      export ROOTSYS=/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.09/x86_64-slc5-gcc47-opt/root/
+      export ROOTSYS=/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.07_python2.7/x86_64-slc5-gcc43-opt/root/
+      # export ROOTSYS=/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.09/x86_64-slc5-gcc47-opt/root/
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
       if [ "$SSH_TTY" ]; then
