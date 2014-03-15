@@ -13,7 +13,8 @@
 
 if has('gui_running')
   syntax enable
-  set background=light
+  " set background=light
+  set background=dark
   colorscheme solarized
 else
   " syntax enable
@@ -299,3 +300,10 @@ set foldlevel=1       "this is just what i use
 " Edit my vimrc in a new tab
 nmap <leader>ev :tabedit $MYVIMRC<CR>
 nmap <leader>sv :so $MYVIMRC<CR>
+
+" ------------------------------------------------------------------------------
+"
+" set t_te= t_ti=
+" set t_te= t_ti=
+" set t_ti= t_te=
+" au VimLeave * :!clear
