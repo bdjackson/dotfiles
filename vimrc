@@ -307,3 +307,38 @@ nmap <leader>sv :so $MYVIMRC<CR>
 " set t_te= t_ti=
 " set t_ti= t_te=
 " au VimLeave * :!clear
+"
+" ------------------------------------------------------------------------------
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    " hi statusline ctermfg=darkred
+    hi statusline ctermfg=magenta
+  elseif a:mode == 'r'
+    hi statusline ctermfg=blue
+  else
+    hi statusline guibg=purple
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertChange * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline ctermfg=lightgreen
+
+hi User1 term=reverse
+
+" set statusline=   " clear the statusline for when vimrc is reloaded
+" set statusline+=%-3.3n\                      " buffer number
+" set statusline+=%f\                          " file name
+" set statusline+=%h%m%r%w                     " flags
+" set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+" set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+" set statusline+=%{&fileformat}]              " file format
+set statusline+=%=                           " right align
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\
+" " highlight
+" set statusline+=%b,0x%-8B\                   " current char
+set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+
+autocmd WinLeave *  hi statuslineNC ctermfg=grey ctermbg=black
+au CmdwinEnter * hi statusline ctermfg=lightblue
+au CmdwinLeave * hi statusline ctermfg=lightgreen
