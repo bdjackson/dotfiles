@@ -144,8 +144,25 @@ set cin
 "set paste
 
 " Set status line with useful information
-set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
-"              | | | | |  |   |      |  |     |    |
+" set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+" "              | | | | |  |   |      |  |     |    |
+" "              | | | | |  |   |      |  |     |    + current
+" "              | | | | |  |   |      |  |     |       column
+" "              | | | | |  |   |      |  |     +-- current line
+" "              | | | | |  |   |      |  +-- current % into file
+" "              | | | | |  |   |      +-- current syntax in
+" "              | | | | |  |   |          square brackets
+" "              | | | | |  |   +-- current fileformat
+" "              | | | | |  +-- number of lines
+" "              | | | | +-- preview flag in square brackets
+" "              | | | +-- help flag in square brackets
+" "              | | +-- readonly flag in square brackets
+" "              | +-- rodified flag in square brackets
+" "              +-- full path to file in the buffer
+
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v][buf%n]%=
+"              | | | | |  |   |      |  |     |    |     |
+"              | | | | |  |   |      |  |     |    |     + current buffer
 "              | | | | |  |   |      |  |     |    + current
 "              | | | | |  |   |      |  |     |       column
 "              | | | | |  |   |      |  |     +-- current line
@@ -159,6 +176,17 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "              | | +-- readonly flag in square brackets
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
+
+" set statusline=   " clear the statusline for when vimrc is reloaded
+" set statusline+=%-3.3n\                      " buffer number
+" set statusline+=%f\                          " file name
+" set statusline+=%h%m%r%w                     " flags
+" set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+" set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+" set statusline+=%{&fileformat}]              " file format
+" set statusline+=%=                           " right align
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\
+set statusline+=%P        " offset
 set laststatus=2
 
 "if has("gui_running")
@@ -326,18 +354,6 @@ au InsertLeave * hi statusline ctermfg=lightgreen
 
 hi User1 term=reverse
 
-" set statusline=   " clear the statusline for when vimrc is reloaded
-" set statusline+=%-3.3n\                      " buffer number
-" set statusline+=%f\                          " file name
-" set statusline+=%h%m%r%w                     " flags
-" set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-" set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-" set statusline+=%{&fileformat}]              " file format
-set statusline+=%=                           " right align
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\
-" " highlight
-" set statusline+=%b,0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 autocmd WinLeave *  hi statuslineNC ctermfg=grey ctermbg=black
 au CmdwinEnter * hi statusline ctermfg=lightblue
