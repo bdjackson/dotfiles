@@ -61,7 +61,8 @@ libiodbc2-dev
   --enable-roofit \
   --enable-ruby \
   --enable-table \
-  --enable-xrootd
+  --enable-xrootd \
+  --enable-cocoa
 
 #   --enable-python \
 #   --with-python-incdir=/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ \

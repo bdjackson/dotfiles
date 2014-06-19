@@ -285,7 +285,7 @@ export PYTHONPATH=$HOME/code/python/exe:$PYTHONPATH
 export PYTHONPATH=$HOME/code/python/modules:$PYTHONPATH
 export PYTHONPATH=$HOME/code/python/scripts:$PYTHONPATH
 export PYTHONPATH=$HOME/rel:$PYTHONPATH
-export PYTHONPATH=$HOME/rel/metaroot:$PYTHONPATH
+# export PYTHONPATH=$HOME/rel/metaroot:$PYTHONPATH
 
 # PYTHONSTARTUP
 export PYTHONSTARTUP=$HOME/code/python/modules/pythonstartup.py
@@ -332,7 +332,7 @@ if $SETUP_ROOT ; then
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif [ $ME = "laptop" ]; then
     echo " - setting up ROOT 5.34.14 for laptop"
-    export ROOTSYS=/Users/bjackson/local/root_v5.34.14
+    export ROOTSYS=/Users/bjackson/local/root_v5.34.18
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif [ $ME = "netbook" ]; then
     echo " - setting up ROOT 5.32.03 for netbook"
