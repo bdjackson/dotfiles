@@ -82,8 +82,20 @@ set shiftround
 " highlight matching braces
 set showmatch
 
+" ------------------------------------------------------------------------------
+" function to toggle number mode (relative or absolute)
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
 " turn line numbers on
-set number
+" set number
+set relativenumber
 
 " turn on ruler 
 set ruler

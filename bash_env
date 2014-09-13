@@ -268,6 +268,8 @@ if $SETUP_PYTHON ; then
     export PYTHONDIR=/scratch/atlas/ATLASLocalRootBase/x86_64/python/2.5.2-i686
     export PATH=$PYTHONDIR/bin:$PATH
     export LD_LIBRARY_PATH=$PYTHONDIR/lib:$LD_LIBRARY_PATH
+  elif [ "$ME" = "laptop" ]; then
+    export PATH="/Users/bjackson/anaconda/bin:$PATH"
   fi
 fi
 
@@ -332,7 +334,8 @@ if $SETUP_ROOT ; then
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif [ $ME = "laptop" ]; then
     echo " - setting up ROOT 5.34.14 for laptop"
-    export ROOTSYS=/Users/bjackson/local/root_v5.34.18
+    # export ROOTSYS=/Users/bjackson/local/root_v5.34.18
+    export ROOTSYS=/Users/bjackson/local/root_v5.34.18.v2
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif [ $ME = "netbook" ]; then
     echo " - setting up ROOT 5.32.03 for netbook"

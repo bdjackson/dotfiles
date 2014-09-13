@@ -45,8 +45,8 @@ libiodbc2-dev
 # Mac configure (OS X 10.7 + 10.8)
 ./configure macosx64 \
   --enable-python \
-  --with-python-incdir=/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/ \
-  --with-python-libdir=/System/Library/Frameworks/Python.framework/Versions/2.7/lib/ \
+  --with-python-incdir=/Users/bjackson/anaconda/include/python2.7/ \
+  --with-python-libdir=/Users/bjackson/anaconda/lib/ \
   --enable-bonjour \
   --enable-builtin-freetype \
   --enable-builtin-glew \
