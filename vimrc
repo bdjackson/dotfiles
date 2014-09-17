@@ -2,14 +2,14 @@
 "
 
 " ------------------------------------------------------------------------------
-"set background=dark
-"set background=light
+" set background=dark
+" set background=light
 " color scheme
-"colorscheme desert
-"colorscheme blackboard
-"colorscheme zenburn
-"colorscheme molokai
-"colorscheme mustang
+" colorscheme desert
+" colorscheme blackboard
+" colorscheme zenburn
+" colorscheme molokai
+" colorscheme mustang
 
 if has('gui_running')
   syntax enable
@@ -24,8 +24,6 @@ else
   ""set background=dark
   ""colorscheme molokai
 endif
-
-
 
 " set file types for syntax coloring
 au BufNewFile,BufRead *.icc set filetype=cpp
@@ -75,12 +73,12 @@ set expandtab        " expand tabs to spaces
 " use multiple of shiftwidth when indenting with '<' and '>'
 set shiftround
 
-"" wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
-"set textwidth=120
+" wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
+" set textwidth=120
 
 " ------------------------------------------------------------------------------
 " highlight matching braces
-set showmatch
+" set showmatch
 
 " ------------------------------------------------------------------------------
 " function to toggle number mode (relative or absolute)
@@ -94,13 +92,13 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 " turn line numbers on
-" set number
-set relativenumber
+set number
+" set relativenumber
 
 " turn on ruler 
 set ruler
 
-" hilight all matches for the last used pattern
+" highlight all matches for the last used pattern
 set hls
 
 " show search matches as you type
@@ -131,6 +129,8 @@ highlight SpecialKey guifg=#4a4a59
 " Turn on cursor line
 set cursorline
 
+nmap <leader>cl :set cursorline!<CR>
+
 " Turn on guide for 81 characters
 if exists('+colorcolumn')
   set colorcolumn=81
@@ -153,25 +153,9 @@ set cin
 
 " fixes paste so that you can paste lines of indented code.
 " not compatible with cin
-"set paste
+" set paste
 
 " Set status line with useful information
-" set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
-" "              | | | | |  |   |      |  |     |    |
-" "              | | | | |  |   |      |  |     |    + current
-" "              | | | | |  |   |      |  |     |       column
-" "              | | | | |  |   |      |  |     +-- current line
-" "              | | | | |  |   |      |  +-- current % into file
-" "              | | | | |  |   |      +-- current syntax in
-" "              | | | | |  |   |          square brackets
-" "              | | | | |  |   +-- current fileformat
-" "              | | | | |  +-- number of lines
-" "              | | | | +-- preview flag in square brackets
-" "              | | | +-- help flag in square brackets
-" "              | | +-- readonly flag in square brackets
-" "              | +-- rodified flag in square brackets
-" "              +-- full path to file in the buffer
-
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v][buf%n]%=
 "              | | | | |  |   |      |  |     |    |     |
 "              | | | | |  |   |      |  |     |    |     + current buffer
@@ -189,16 +173,11 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v][buf%n]%=
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
 
-" set statusline=   " clear the statusline for when vimrc is reloaded
-" set statusline+=%-3.3n\                      " buffer number
-" set statusline+=%f\                          " file name
-" set statusline+=%h%m%r%w                     " flags
-" set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-" set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-" set statusline+=%{&fileformat}]              " file format
-" set statusline+=%=                           " right align
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\
-set statusline+=%P        " offset
+set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+set statusline+=%{&fileformat}]              " file format
+set statusline+=%=                           " right align
+set statusline+=%P                           " offset
 set laststatus=2
 
 "if has("gui_running")
@@ -206,9 +185,9 @@ set laststatus=2
 "endif
 set guifont=Source_Code_Pro:h9
 
-" ------------------------------------------------------------------------------
-"  snipMate setup
-let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate.vim/snippets/"
+" " ------------------------------------------------------------------------------
+" "  snipMate setup
+" let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate.vim/snippets/"
 
 " ------------------------------------------------------------------------------
 " Enhanced keyboard mappings
@@ -216,53 +195,53 @@ let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate.vim/snippets/"
 " map kj to escape
 imap kj <Esc>
 
-" in normal mode F2 will save the file
-nmap <F2> :w<CR>
-
-" in insert mode F2 will exit insert, save, enters insert again
-imap <F2> <ESC>:w<CR>i
-
-" switch between header/source with F4
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-
-" recreate tags file with F5
-map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
-
-" create doxygen comment
-map <F6> :Dox<CR>
-
-" build using makeprg with <F7>
-map <F7> :make<CR>
-
-" build using makeprg with <S-F7>
-map <S-F7> :make clean all<CR>
-
-" goto definition with F12
-map <F12> <C-]>
+" " in normal mode F2 will save the file
+" nmap <F2> :w<CR>
+" 
+" " in insert mode F2 will exit insert, save, enters insert again
+" imap <F2> <ESC>:w<CR>i
+" 
+" " switch between header/source with F4
+" map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" 
+" " recreate tags file with F5
+" map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
+" 
+" " create doxygen comment
+" map <F6> :Dox<CR>
+" 
+" " build using makeprg with <F7>
+" map <F7> :make<CR>
+" 
+" " build using makeprg with <S-F7>
+" map <S-F7> :make clean all<CR>
+" 
+" " goto definition with F12
+" map <F12> <C-]>
 
 " Allows writing with :W as well as :w
 :cnoreabbrev <expr> W getcmdtype()==':'&&getcmdline()=~#'^W'?'w':'W'
 
-"" in diff mode we use the spell check keys for merging
-"if &diff
-"  " diff settings
-"  map <M-Down> ]c
-"  map <M-Up> [c
-"  map <M-Left> do
-"  map <M-Right> dp
-"  map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
-"else
-"  " spell settings
-"  :setlocal spell spelllang=en
-"  " set the spellfile - folders must exist
-"  set spellfile=~/.vim/spellfile.add
-"  map <M-Down> ]s
-"  map <M-Up> [s
-"endif
-
-" "real tab in Makefiles
-" handled by after/ftplugin/make.vim
-" autocmd FileType make setlocal noexpandtab
+" "" in diff mode we use the spell check keys for merging
+" "if &diff
+" "  " diff settings
+" "  map <M-Down> ]c
+" "  map <M-Up> [c
+" "  map <M-Left> do
+" "  map <M-Right> dp
+" "  map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
+" "else
+" "  " spell settings
+" "  :setlocal spell spelllang=en
+" "  " set the spellfile - folders must exist
+" "  set spellfile=~/.vim/spellfile.add
+" "  map <M-Down> ]s
+" "  map <M-Up> [s
+" "endif
+" 
+ " real tab in Makefiles
+ " handled by after/ftplugin/make.vim
+ autocmd FileType make setlocal noexpandtab
 
 " ------------------------------------------------------------------------------
 " Shortcut to rapidly toggle `set list`
@@ -280,14 +259,14 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Bubble single lines
-" nmap <C-Up> ddkP
-" nmap <C-Down> ddp
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+" " Bubble single lines
+" " nmap <C-Up> ddkP
+" " nmap <C-Down> ddp
+" nmap <C-Up> [e
+" nmap <C-Down> ]e
+" " Bubble multiple lines
+" vmap <C-Up> [egv
+" vmap <C-Down> ]egv
 
 " common alignments
 if  exists(":Tabularize")
@@ -329,25 +308,25 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-" ------------------------------------------------------------------------------
-" Folding settings
-set foldmethod=indent "fold based on indent
-set foldnestmax=10    "deepest fold is 10 levels
-set nofoldenable      "dont fold by default
-set foldlevel=1       "this is just what i use
-
+" " ------------------------------------------------------------------------------
+" " Folding settings
+" set foldmethod=indent "fold based on indent
+" set foldnestmax=10    "deepest fold is 10 levels
+" set nofoldenable      "dont fold by default
+" set foldlevel=1       "this is just what i use
+" 
 " ------------------------------------------------------------------------------
 " Edit my vimrc in a new tab
 nmap <leader>ev :tabedit $MYVIMRC<CR>
 nmap <leader>sv :so $MYVIMRC<CR>
 
-" ------------------------------------------------------------------------------
-"
-" set t_te= t_ti=
-" set t_te= t_ti=
-" set t_ti= t_te=
-" au VimLeave * :!clear
-"
+" " ------------------------------------------------------------------------------
+" "
+" " set t_te= t_ti=
+" " set t_te= t_ti=
+" " set t_ti= t_te=
+" " au VimLeave * :!clear
+" "
 " ------------------------------------------------------------------------------
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
