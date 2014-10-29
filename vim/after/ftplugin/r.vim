@@ -4,4 +4,6 @@ if has("autocmd")
   setlocal shiftwidth=8     " indent also with 4 spaces
   setlocal softtabstop=8    " remove 4 spaces with backspace
   setlocal expandtab        " expand tabs to spaces
+
+  imap _ <-
 endif
