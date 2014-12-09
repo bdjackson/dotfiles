@@ -81,3 +81,5 @@ source $ZSH/oh-my-zsh.sh
 
 source ${HOME}/.zsh_env
 source ${HOME}/.bash_aliases
+ 
+# export LC_ALL=en_US.UFT-8 
