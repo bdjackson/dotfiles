@@ -155,8 +155,11 @@ if [ $ME = "afs" ]; then
   fi
   if [ $SLC_version = "6" ]; then
     # echo " - setting up numpy for SLC6"
-    export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib/python2.7/site-packages/:$PYTHONPATH
-    export LD_LIBRARY_PATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib:$LD_LIBRARY_PATH
+    # export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib/python2.7/site-packages/:$PYTHONPATH
+
+
+    export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy/INSTALL/lib/python2.7/site-packages:$PYTHONPATH
+    # export LD_LIBRARY_PATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib:$LD_LIBRARY_PATH
   fi
 fi
 # this is set up using anaconda on laptop
@@ -217,3 +220,7 @@ fi
 #   echo -e "________________________________________________________________________________"
 # fi
 
+if [ $ME = "afs" ] ; then
+  export LC_ALL=en_US.UTF-8
+  export LANG=en_US.UTF-8
+fi
