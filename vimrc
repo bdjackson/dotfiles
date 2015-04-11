@@ -349,3 +349,6 @@ hi User1 term=reverse
 autocmd WinLeave *  hi statuslineNC ctermfg=grey ctermbg=black
 au CmdwinEnter * hi statusline ctermfg=lightblue
 au CmdwinLeave * hi statusline ctermfg=lightgreen
+
+
+let g:tex_flavor='latex'
