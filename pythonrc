@@ -1,0 +1,9 @@
+import sys
+
+if not sys.argv.count('-b'):
+    print 'Loading pythonrc'
+    import rlcompleter, readline
+    readline.parse_and_bind( 'tab: complete' )
+    readline.parse_and_bind ("bind ^I rl_complete")
+    readline.parse_and_bind( 'set show-all-if-ambiguous On' )
+

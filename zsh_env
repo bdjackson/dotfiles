@@ -136,6 +136,8 @@ export PYTHONPATH=$HOME/rel:$PYTHONPATH
 
 # PYTHONSTARTUP
 # export PYTHONSTARTUP=$HOME/code/python/modules/pythonstartup.py
+# export PYTHONSTARTUP=$HOME/.pythonrc
+export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 # set colors for grep
 export GREP_OPTIONS='--color=auto'
@@ -185,7 +187,12 @@ if [ $ME = "afs" ]; then
 elif [ $ME = "laptop" ]; then
   # echo " - setting up ROOT 5.34.18 for laptop"
   # export ROOTSYS=/Users/bjackson/local/root_v5.34.18
-  export ROOTSYS=/Users/bjackson/local/root_v5.34.18.v2
+  # export ROOTSYS=/Users/bjackson/local/root_v5.34.18.v2
+  if [[ -d /Users/bjackson/local/root_v5-34-00-patches ]] ; then
+    export ROOTSYS=/Users/bjackson/local/root_v5-34-00-patches
+  else
+    export ROOTSYS=/Users/bjackson/local/root_v5.34.18.v2
+  fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 elif [ $ME = "pennt3" ]; then
   # if [ "$SSH_TTY" ]; then
