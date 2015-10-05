@@ -3,40 +3,13 @@
 # ==============================================================================
 # case "$HOSTNAME" in
 case "`hostname`" in
-  lxplus*|pc-penn-*|trtdaq2)
-  export ME="afs"
-  ;;
-  a*.hep.upenn.edu)
-  export ME="pennt3";
-  ;;
   bjackson|bjackson-pro|bjackson-air)
   export ME="laptop"
   ;;
   *)
-  echo -e "${LIGHTRED}~/.bash_env doesn't recognize this host, ${HOSTNAME}.  Let's hope it has afs.${NC}"
-  export ME="afs"
+  export ME=""
   ;;
 esac
-
-if [ "$ME" = "afs" ]; then
-  export SLC_version=`head -1 /etc/issue | awk -F"release" '{print $2}' | sed "s/[^0-9.]"//g | awk -F"." '{print $1}'`
-  export PLATFORM=`uname -i`
-fi
-
-# ==============================================================================
-# = setup ATLAS software on tier 3
-# ==============================================================================
-if [ "$ME" = "pennt3" ]; then
-  if [ "$SSH_TTY" ]; then
-    # echo "setupATLAS"
-    source /etc/bashrc
-    if [ `hostname` == "at3f*" ]; then
-      # echo "on worker node. Manually setting setupATLAS alias"
-      alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh'
-    fi
-  fi
-  setupATLAS
-fi
 
 # ==============================================================================
 # = Ignore <ctrl>-d to avoid inadvertantly quitting shell
@@ -46,188 +19,25 @@ set -o ignoreeof
 # ==============================================================================
 # = Various SVN servers
 # ==============================================================================
-export SVNATLAS=svn+ssh://bjackson@svn.cern.ch/reps
-export SVNOFF=svn+ssh://bjackson@svn.cern.ch/reps/atlasoff
-export SVNGRP=svn+ssh://bjackson@svn.cern.ch/reps/atlasgrp
-export SVNUSR=svn+ssh://bjackson@svn.cern.ch/reps/atlasusr
-export SVNPERF=svn+ssh://bjackson@svn.cern.ch/reps/atlasperf
-export SVNPHYS=svn+ssh://bjackson@svn.cern.ch/reps/atlasphys
-export SVNPENN=svn+ssh://bjackson@svn.cern.ch/reps/penn
-export SVNTRT=svn+ssh://svn.cern.ch/reps/trtdaq
-export SVNIRVINE=svn+ssh://bjackson@svn.cern.ch/reps/atlasinst/Institutes/UCIrvine
-export SVNINST=svn+ssh://svn.cern.ch/reps/atlasinst
-export SVNROOT=${SVNOFF}
-
-# ==============================================================================
-# = gcc
-# ==============================================================================
-if [ $ME = "afs" ]; then
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if [ $SLC_version = "5" ] && [ $PLATFORM = "x86_64" ]; then
-    # if [ "$SSH_TTY" ]; then
-    #   echo " - setting up gcc 4.7 for SLC5"
-    # fi
-    source /afs/cern.ch/sw/lcg/external/gcc/4.3.6/x86_64-slc5/setup.sh
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
-    # if [ "$SSH_TTY" ]; then
-    #   echo " - setting up gcc 4.6 for SLC6"
-    # fi
-    source /afs/cern.ch/sw/lcg/contrib/gcc/4.7/x86_64-slc6/setup.sh
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  else
-    # if [ "$SSH_TTY" ]; then
-    #   echo "  - not setting up gcc"
-    # fi
-  fi
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-elif [ $ME = "pennt3" ]; then
-  # if [ "$SSH_TTY" ]; then
-  #   echo " - setting up gcc for PennT3"
-  # fi
-  localSetupGcc --gccVersion=gcc432_x86_64_slc5 --quiet
-fi
 
 # ==============================================================================
 # = python
 # ==============================================================================
-if [ "$ME" = "afs" ]; then
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if [ $SLC_version = "5" ] && [ $PLATFORM = "x86_64" ]; then
-    # if [ "$SSH_TTY" ]; then
-    #   echo " - setting up Python 2.6.5 for SLC5"
-    # fi
-    export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.6.5p2/x86_64-slc5-gcc43-opt/
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
-    # if [ "$SSH_TTY" ]; then
-    #   echo " - setting up Python 2.7.3 for SLC6"
-    # fi
-    export PYTHONDIR=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc47-opt/
-  fi
-  export PATH=$PYTHONDIR/bin:$PATH
-  export LD_LIBRARY_PATH=$PYTHONDIR/lib:$LD_LIBRARY_PATH
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-elif [ $ME = "pennt3" ]; then
-  # if [ "$SSH_TTY" ]; then
-  #   echo " - setting up python for PennT3"
-  # fi
-  localSetupPython --pythonVersion=2.6.5-x86_64-slc5-gcc43
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-elif [ "$ME" = "laptop" ]; then
-  export PATH="/Users/bjackson/anaconda/bin:$PATH"
+if [ "$ME" = "laptop" ]; then
+  # export PATH="/Users/bjackson/anaconda/bin:$PATH"
+  export PATH=/usr/local/bin:$PATH
 fi
+
+# Virtualenv/VirtualenvWrapper
+source /usr/local/bin/virtualenvwrapper.sh
+
 
 # ==============================================================================
 # = Personal settings
 # ==============================================================================
-# PATH
-# export PATH=$HOME/code/python/exe:$PATH
-# export PATH=$HOME/code/python/scripts:$PATH
-# export PATH=$HOME/code/root:$PATH
-export PATH=$HOME/rel/root2html:$PATH
-
-# PYTHONPATH
-# export PYTHONPATH=$HOME/code/python/exe:$PYTHONPATH
-export PYTHONPATH=$HOME/code/python/modules:$PYTHONPATH
-export PYTHONPATH=$HOME/code/python/scripts:$PYTHONPATH
-export PYTHONPATH=$HOME/rel:$PYTHONPATH
-# export PYTHONPATH=$HOME/rel/metaroot:$PYTHONPATH
-
-# PYTHONSTARTUP
-# export PYTHONSTARTUP=$HOME/code/python/modules/pythonstartup.py
-# export PYTHONSTARTUP=$HOME/.pythonrc
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 # set colors for grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32' # bright green
 
-# ==============================================================================
-# = numpy and matplotlib
-# ==============================================================================
-if [ $ME = "afs" ]; then
-  # if [ "$SSH_TTY" ]; then
-  #   echo " - setting up numpy"
-  # fi
-  if [ $SLC_version = "5" ]; then
-    # echo " - setting up numpy for SLC5"
-    export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib/python2.7/site-packages/:$PYTHONPATH
-    export LD_LIBRARY_PATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib:$LD_LIBRARY_PATH
-  fi
-  if [ $SLC_version = "6" ]; then
-    # echo " - setting up numpy for SLC6"
-    # export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib/python2.7/site-packages/:$PYTHONPATH
-
-
-    export PYTHONPATH=/afs/cern.ch/user/b/bjackson/local/numpy/INSTALL/lib/python2.7/site-packages:$PYTHONPATH
-    # export LD_LIBRARY_PATH=/afs/cern.ch/user/b/bjackson/local/numpy_install/lib:$LD_LIBRARY_PATH
-  fi
-fi
-# this is set up using anaconda on laptop
-
-# ==============================================================================
-# = Root and PyRoot
-# ==============================================================================
-if [ $ME = "afs" ]; then
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if [ $SLC_version = "5" ] && [ $PLATFORM = "x86_64" ]; then
-    # if [ "$SSH_TTY" ]; then
-    #   echo " - setting up ROOT 5.34.09 for SLC5"
-    # fi
-    export ROOTSYS=/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.07/x86_64-slc5-gcc43-opt/root
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif [ $SLC_version = "6" ] && [ $PLATFORM = "x86_64" ]; then
-    # if [ "$SSH_TTY" ]; then
-    #   echo " - setting up ROOT 5.32.03 for SLC6"
-    # fi
-    export ROOTSYS=/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.17/x86_64-slc6-gcc47-opt/root
-  fi
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-elif [ $ME = "laptop" ]; then
-  # echo " - setting up ROOT 5.34.18 for laptop"
-  # export ROOTSYS=/Users/bjackson/local/root_v5.34.18
-  # export ROOTSYS=/Users/bjackson/local/root_v5.34.18.v2
-  if [[ -d /Users/bjackson/local/root_v5-34-00-patches ]] ; then
-    export ROOTSYS=/Users/bjackson/local/root_v5-34-00-patches
-  else
-    export ROOTSYS=/Users/bjackson/local/root_v5.34.18.v2
-  fi
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-elif [ $ME = "pennt3" ]; then
-  # if [ "$SSH_TTY" ]; then
-  #   echo " - setting up ROOT 5.32.03 for PennT3"
-  # fi
-  localSetupROOT --rootVersion=5.32.03-x86_64-slc5-gcc4.3 --skipConfirm --quiet
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-export PATH=$ROOTSYS/bin:$PATH
-export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$ROOTSYS/pyroot:$ROOTSYS/lib:$PYTHONPATH
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-alias pyroot="python -i -c \"from ROOT import *; import rootlogon;\""
-alias pyrootb="python -i -c \"from ROOT import *; import rootlogon; b = TBrowser()\""
-
-# ==============================================================================
-# = Athena
-# ==============================================================================
-if [ $ME != "laptop" ] ; then
-  alias setup_cmt="source /afs/cern.ch/sw/contrib/CMT/v1r21/mgr/setup.sh"
-  alias setup_pathena="source /afs/cern.ch/atlas/offline/external/GRID/DA/panda-client/latest/etc/panda/panda_setup.sh"
-  export PATHENA_GRID_SETUP_SH="/afs/cern.ch/project/gd/LCG-share/current/etc/profile.d/grid_env.sh"
-
-  export AtlasSetup=/afs/cern.ch/atlas/software/dist/AtlasSetup
-  alias asetup='source $AtlasSetup/scripts/asetup.sh'
-fi
-
-# if [ "$ME" = "laptop" ] || [ "$SSH_TTY" ]; then
-#   echo -ne "$NC"
-#   echo -e "________________________________________________________________________________"
-# fi
-
-if [ $ME = "afs" ] ; then
-  export LC_ALL=en_US.UTF-8
-  export LANG=en_US.UTF-8
-fi
