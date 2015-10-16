@@ -1,7 +1,7 @@
 import sys
 
 if not sys.argv.count('-b'):
-    print 'Loading pythonrc'
+    # print 'Loading pythonrc'
     import readline
     import rlcompleter
     if 'libedit' in readline.__doc__:

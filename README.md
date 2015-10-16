@@ -14,3 +14,10 @@ To install oh-my-zsh, run this command.
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ```
  This is command is taken from [[ohmyz.sh][ohmyz.sh]]
+
+## Install other packages
+Install the latest versions of git and svn
+```
+brew install git
+brew install svn
+```
