@@ -41,6 +41,11 @@ pip install --upgrade virtualenv
 pip install --upgrade virtualenvwrapper
 ```
 
+```
+pip3 install --upgrade virtualenv
+pip3 install --upgrade virtualenvwrapper
+```
+
 Add the following to .zsh_env:
 ```
 # Virtualenv/VirtualenvWrapper
@@ -78,6 +83,9 @@ pip install --upgrade matplotlib
 pip install --upgrade seaborn
 pip install --upgrade ipython
 pip install --upgrade jupyter
+pip install --upgrade Pillow
+pip install --upgrade scikit-image
+pip install --upgrade exifread
 ```
 
 
@@ -114,11 +122,30 @@ cd build
 
 
 ```
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+  -D CMAKE_INSTALL_PREFIX=/usr/local \
 	-D PYTHON2_PACKAGES_PATH=~/.virtualenvs/cv/lib/python2.7/site-packages \
 	-D PYTHON2_LIBRARY=/usr/local/Cellar/python/2.7.10/Frameworks/Python.framework/Versions/2.7/bin \
 	-D PYTHON2_INCLUDE_DIR=/usr/local/Frameworks/Python.framework/Headers \
-	-D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON \
+	-D PYTHON3_PACKAGES_PATH=~/.virtualenvs/cv3/lib/python3.5/site-packages \
+	-D PYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5m.dylib \
+	-D PYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/include/python3.5m \
+	-D INSTALL_C_EXAMPLES=ON \
+	-D INSTALL_PYTHON_EXAMPLES=ON \
 	-D BUILD_EXAMPLES=ON \
-	-D OPENCV_EXTRA_MODULES_PATH=~/local/opencv_contrib/modules ..
+	-D BUILD_opencv_python3=ON \
+	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..
+```
+
+```
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+	-D CMAKE_INSTALL_PREFIX=/usr/local \
+	-D PYTHON3_PACKAGES_PATH=~/.virtualenvs/cv3/lib/python3.5/site-packages \
+	-D PYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5m.dylib \
+	-D PYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/include/python3.5m \
+	-D INSTALL_C_EXAMPLES=ON \
+	-D INSTALL_PYTHON_EXAMPLES=ON \
+	-D BUILD_EXAMPLES=ON \
+	-D BUILD_opencv_python3=ON \
+	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..
 ```
