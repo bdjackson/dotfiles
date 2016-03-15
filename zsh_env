@@ -32,7 +32,8 @@ fi
 # source /usr/local/bin/virtualenvwrapper.sh
 
 # Virtualenv/VirtualenvWrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+#~ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
 
@@ -48,3 +49,8 @@ export GREP_COLOR='1;32' # bright green
 
 # Turn off sharing history across terminals - don't want to confuse sessions
 setopt no_share_history
+
+# ==============================================================================
+# = Set up aliases
+# ==============================================================================
+source ${HOME}/.zsh_aliases
