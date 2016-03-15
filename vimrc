@@ -44,8 +44,8 @@ filetype plugin indent on    " required
 
 if has('gui_running')
   syntax enable
-  " set background=light
-  set background=dark
+  set background=light
+  " set background=dark
   colorscheme solarized
 endif
 
