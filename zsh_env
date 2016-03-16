@@ -3,15 +3,15 @@
 # ==============================================================================
 # case "$HOSTNAME" in
 case "`hostname`" in
-  bjackson|bjackson-pro|bjackson-air|2usmbjackson.local)
+  bjackson|bjackson-pro|bjackson-air|2usmbjackson.ad.navteq.com)
   echo "laptop"
   export ME="laptop"
   ;;
   orion|europa)
+  echo "ME=here"
   export ME="here"
   ;;
   *)
-  echo "ME=here"
   export ME=""
   ;;
 esac
