@@ -76,9 +76,9 @@ Install some packages that will be useful
 =========================================
 ```
 pip install --upgrade numpy
+pip install --upgrade scipy
 pip install --upgrade sklearn
 pip install --upgrade pandas
-pip install --upgrade scipy
 pip install --upgrade matplotlib
 pip install --upgrade seaborn
 pip install --upgrade ipython

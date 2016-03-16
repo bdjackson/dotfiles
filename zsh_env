@@ -3,10 +3,15 @@
 # ==============================================================================
 # case "$HOSTNAME" in
 case "`hostname`" in
-  bjackson|bjackson-pro|bjackson-air)
+  bjackson|bjackson-pro|bjackson-air|2usmbjackson.local)
+  echo "laptop"
   export ME="laptop"
   ;;
+  orion|europa)
+  export ME="here"
+  ;;
   *)
+  echo "ME=here"
   export ME=""
   ;;
 esac
@@ -24,17 +29,24 @@ set -o ignoreeof
 # = python
 # ==============================================================================
 if [ "$ME" = "laptop" ]; then
-  # export PATH="/Users/bjackson/anaconda/bin:$PATH"
   export PATH=/usr/local/bin:$PATH
+elif [ "$ME" = "here" ]; then
+  export PATH=${HOME}/.local/bin:$PATH
 fi
 
 # # Virtualenv/VirtualenvWrapper
 # source /usr/local/bin/virtualenvwrapper.sh
 
 # Virtualenv/VirtualenvWrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+if [ "$ME" = "laptop" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+  source /usr/local/bin/virtualenvwrapper.sh
+elif [ "$ME" = "here" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+  source ${HOME}/.local/bin/virtualenvwrapper.sh
+fi
 #~ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 
 
 
