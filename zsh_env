@@ -3,12 +3,13 @@
 # ==============================================================================
 # case "$HOSTNAME" in
 case "`hostname`" in
-  bjackson|bjackson-pro|bjackson-air|2usmbjackson.ad.navteq.com)
-  echo "laptop"
+  bjackson*)
   export ME="laptop"
   ;;
+  2usmbjackson.*)
+  export ME="here_laptop"
+  ;;
   orion|europa)
-  echo "ME=here"
   export ME="here"
   ;;
   *)
@@ -22,32 +23,23 @@ esac
 set -o ignoreeof
 
 # ==============================================================================
-# = Various SVN servers
-# ==============================================================================
-
-# ==============================================================================
 # = python
 # ==============================================================================
 if [ "$ME" = "laptop" ]; then
   export PATH=/usr/local/bin:$PATH
+elif [ "$ME" = "here_laptop" ]; then
+  export PATH="${HOME}/anaconda/bin:$PATH"
 elif [ "$ME" = "here" ]; then
-  export PATH=${HOME}/.local/bin:$PATH
+  export PATH=${HOME}/anaconda2/bin:$PATH
 fi
 
-# # Virtualenv/VirtualenvWrapper
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# Virtualenv/VirtualenvWrapper
+# ==============================================================================
+# = Virtualenv/VirtualenvWrapper
+# ==============================================================================
 if [ "$ME" = "laptop" ]; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
   source /usr/local/bin/virtualenvwrapper.sh
-elif [ "$ME" = "here" ]; then
-  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-  source ${HOME}/.local/bin/virtualenvwrapper.sh
 fi
-#~ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-# source /usr/local/bin/virtualenvwrapper.sh
-
 
 # ==============================================================================
 # = Personal settings
