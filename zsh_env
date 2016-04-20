@@ -57,3 +57,25 @@ setopt no_share_history
 # = Set up aliases
 # ==============================================================================
 source ${HOME}/.zsh_aliases
+
+# ==============================================================================
+# = Set up spark
+# ==============================================================================
+if [ "$ME" = "laptop" ]; then
+  export SPARK_HOME="/usr/local/Cellar/apache-spark/1.6.1/libexec/"
+  export PATH=$SPARK_HOME/bin:$PATH
+
+  export PYTHONPATH=$SPARKHOME/python/lib/py4j-0.8.2.1-src.zip:$SPARKHOME/python/:$PYTHONPATH
+
+  # export PYSPARK_SUBMIT_ARGS="--packages $o
+  export PACKAGES="com.databricks:spark-csv_2.11:1.4.0"
+  export PYSPARK_SUBMIT_ARGS="--packages ${PACKAGES} pyspark-shell"
+fi
+
+# ==============================================================================
+# = Set up torch
+# ==============================================================================
+if [ "$ME" = "laptop" ]; then
+  . /Users/bjackson/local/torch/install/bin/torch-activate
+fi
+
