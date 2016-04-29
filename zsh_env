@@ -12,6 +12,9 @@ case "`hostname`" in
   orion|europa)
   export ME="here"
   ;;
+  jupiter)
+  export ME="here_jupiter"
+  ;;
   *)
   export ME=""
   ;;
@@ -67,9 +70,14 @@ if [ "$ME" = "laptop" ]; then
 
   export PYTHONPATH=$SPARKHOME/python/lib/py4j-0.8.2.1-src.zip:$SPARKHOME/python/:$PYTHONPATH
 
-  # export PYSPARK_SUBMIT_ARGS="--packages $o
+  # used for pyspark in a jupyter notebook
   export PACKAGES="com.databricks:spark-csv_2.11:1.4.0"
   export PYSPARK_SUBMIT_ARGS="--packages ${PACKAGES} pyspark-shell"
+elif [ "$ME" = "here_jupiter" ]; then
+  export SPARK_HOME=/usr/local/spark
+  export PATH=$SPARK_HOME/bin:$PATH
+
+  umask 002
 fi
 
 # ==============================================================================
