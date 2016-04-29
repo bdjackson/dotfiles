@@ -1,5 +1,5 @@
 alias du='du -sh'
 
-alias orion='ssh -Y bjackson@orion.ad.navteq.com'
-alias europa='ssh -Y bjackson@europa.hq.navteq.com'
+alias orion='ssh bjackson@orion.ad.navteq.com'
+alias europa='ssh bjackson@europa.hq.navteq.com'
 alias jupiter='ssh bjackson@jupiter.ad.navteq.com'
