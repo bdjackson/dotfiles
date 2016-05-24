@@ -52,6 +52,8 @@ if has('gui_running')
   set background=light
   " set background=dark
   colorscheme solarized
+else
+  set backspace=indent,eol,start
 endif
 
 " set file types for syntax coloring
