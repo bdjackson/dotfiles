@@ -56,6 +56,11 @@ export GREP_COLOR='1;32' # bright green
 # Turn off sharing history across terminals - don't want to confuse sessions
 setopt no_share_history
 
+if [ "$ME" = "here_jupiter" ]; then
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HOME}/local/lib/
+fi
+
+
 # ==============================================================================
 # = Set up aliases
 # ==============================================================================
@@ -87,3 +92,10 @@ if [ "$ME" = "laptop" ]; then
   . /Users/bjackson/local/torch/install/bin/torch-activate
 fi
 
+# ==============================================================================
+# = Set up vtk
+# ==============================================================================
+if [ "$ME" = "here_jupiter" ]; then
+  export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages/
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+fi
