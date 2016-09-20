@@ -99,3 +99,9 @@ if [ "$ME" = "here_jupiter" ]; then
   export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages/
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 fi
+
+# ==============================================================================
+# = Set up CUDA
+# ==============================================================================
+export PATH=/usr/local/cuda-7.5/bin:$PATH                                                                   
+export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64/:$LD_LIBRARY_PATH

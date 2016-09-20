@@ -3,3 +3,5 @@ alias du='du -sh'
 alias orion='ssh bjackson@orion.ad.navteq.com'
 alias europa='ssh bjackson@europa.hq.navteq.com'
 alias jupiter='ssh bjackson@jupiter.ad.navteq.com'
+
+alias activate_torch='. /home/labuser/software/torch/install/bin/torch-activate'
