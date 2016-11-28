@@ -31,7 +31,8 @@ set -o ignoreeof
 if [ "$ME" = "laptop" ]; then
   export PATH=/usr/local/bin:$PATH
 elif [ "$ME" = "here_laptop" ]; then
-  export PATH="${HOME}/anaconda/bin:$PATH"
+  export PATH=/usr/local/bin:$PATH
+  # export PATH="${HOME}/anaconda/bin:$PATH"
 elif [ "$ME" = "here" ]; then
   export PATH=${HOME}/anaconda2/bin:$PATH
 fi
@@ -88,10 +89,11 @@ fi
 # ==============================================================================
 # = Set up torch
 # ==============================================================================
-if [ "$ME" = "laptop" ]; then
+if [[ "$ME" = "laptop" || "$ME" = 'here_laptop' ]]; then
   . /Users/bjackson/local/torch/install/bin/torch-activate
 fi
 
+<<<<<<< HEAD
 # ==============================================================================
 # = Set up vtk
 # ==============================================================================
@@ -105,3 +107,27 @@ fi
 # ==============================================================================
 export PATH=/usr/local/cuda-7.5/bin:$PATH                                                                   
 export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64/:$LD_LIBRARY_PATH
+=======
+# # ==============================================================================
+# # = Set up CUDA
+# # ==============================================================================
+# if [[ "$ME" = 'here_laptop' ]]; then
+#   export CUDA_HOME=/usr/local/cuda
+#   export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
+#   export PATH="$CUDA_HOME/bin:$PATH"
+# fi
+
+# ==============================================================================
+# = Set up rbenv for ruby
+# ==============================================================================
+if [[ "$ME" = "here_laptop" ]]; then
+  eval "$(rbenv init -)"
+fi
+
+# ==============================================================================
+# = Add sbin to path -- wanted by homebrew
+# ==============================================================================
+if [[ "$ME" = "here_laptop" ]]; then
+  export PATH="/usr/local/sbin:$PATH"
+fi
+>>>>>>> add to zsh_env
