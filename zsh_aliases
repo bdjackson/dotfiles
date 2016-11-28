@@ -1,7 +1,13 @@
 alias du='du -sh'
 
 alias orion='ssh bjackson@orion.ad.navteq.com'
-alias europa='ssh bjackson@europa.hq.navteq.com'
-alias jupiter='ssh bjackson@jupiter.ad.navteq.com'
+alias europa='ssh -Y bjackson@europa.hq.navteq.com'
+alias jupiter='ssh -Y bjackson@jupiter.ad.here.com'
+alias callisto='ssh bjackson@callisto.ad.here.com'
+alias axilla='ssh bjackson@axilla.ad.here.com'
+alias brown='ssh bjackson@brown.ad.navteq.com'
 
-alias activate_torch='. /home/labuser/software/torch/install/bin/torch-activate'
+alias labuser_orion='ssh labuser@orion.ad.navteq.com'
+alias labuser_europa='ssh -Y labuser@europa.hq.navteq.com'
+alias labuser_jupiter='ssh -Y labuser@jupiter.ad.here.com'
+alias labuser_callisto='ssh labuser@callisto.ad.here.com'
