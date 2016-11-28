@@ -16,6 +16,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'wincent/Command-T'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -373,3 +374,6 @@ au CmdwinLeave * hi statusline ctermfg=lightgreen
 
 
 let g:tex_flavor='latex'
+
+" ------------------------------------------------------------------------------
+let vim_markdown_preview_github=1
