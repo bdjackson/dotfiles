@@ -32,7 +32,6 @@ if [ "$ME" = "laptop" ]; then
   export PATH=/usr/local/bin:$PATH
 elif [ "$ME" = "here_laptop" ]; then
   export PATH=/usr/local/bin:$PATH
-  # export PATH="${HOME}/anaconda/bin:$PATH"
 elif [ "$ME" = "here" ]; then
   export PATH=${HOME}/anaconda2/bin:$PATH
 fi
