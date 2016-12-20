@@ -85,5 +85,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ${HOME}/.zsh_env
- 
 # export LC_ALL=en_US.UFT-8 
+source ${HOME}/.bash_aliases

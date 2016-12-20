@@ -10,3 +10,4 @@ alias mcm='make clean ; make'
 
 alias setup_python32='export VERSIONER_PYTHON_PREFER_32_BIT=yes'
 
+alias vimO='vim -O'

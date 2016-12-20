@@ -149,3 +149,11 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D BUILD_opencv_python3=ON \
 	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..
 ```
+
+Install TensorFlow
+==================
+```
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.10.0-py3-none-any.whl
+pip install --upgrade $TF_BINARY_URL
+```
+
