@@ -9,8 +9,11 @@ case "`hostname`" in
   2usmbjackson.*)
   export ME="here_laptop"
   ;;
-  orion|europa)
-  export ME="here"
+  orion)
+  export ME="here_orion"
+  ;;
+  europa)
+  export ME="here_europa"
   ;;
   jupiter)
   export ME="here_jupiter"
