@@ -1,11 +1,11 @@
 alias du='du -sh'
 
-alias orion='ssh bjackson@orion.ad.navteq.com'
-alias europa='ssh -Y bjackson@europa.hq.navteq.com'
+alias orion='ssh bjackson@orion.ad.here.com'
+alias europa='ssh -Y bjackson@europa.ad.here.com'
 alias jupiter='ssh -Y bjackson@jupiter.ad.here.com'
 alias callisto='ssh bjackson@callisto.ad.here.com'
 alias axilla='ssh bjackson@axilla.ad.here.com'
-alias brown='ssh bjackson@brown.ad.navteq.com'
+alias brown='ssh bjackson@brown.ad.here.com'
 
 alias labuser_orion='ssh labuser@orion.ad.navteq.com'
 alias labuser_europa='ssh -Y labuser@europa.hq.navteq.com'
