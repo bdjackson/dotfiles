@@ -50,7 +50,7 @@ fi
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 # set colors for grep
-export GREP_OPTIONS='--color=auto'
+# export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32' # bright green
 
 # Turn off sharing history across terminals - don't want to confuse sessions
