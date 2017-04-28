@@ -57,6 +57,11 @@ else
   set backspace=indent,eol,start
 endif
 
+if &diff
+  colorscheme evening
+endif
+
+
 " set file types for syntax coloring
 au BufNewFile,BufRead *.icc set filetype=cpp
 
