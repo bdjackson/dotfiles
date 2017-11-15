@@ -18,6 +18,9 @@ case "`hostname`" in
   jupiter)
   export ME="here_jupiter"
   ;;
+  trappist-1)
+  export ME="here_trappist"
+  ;;
   *)
   export ME=""
   ;;
@@ -35,8 +38,6 @@ if [ "$ME" = "laptop" ]; then
   export PATH=/usr/local/bin:$PATH
 elif [ "$ME" = "here_laptop" ]; then
   export PATH=/usr/local/bin:$PATH
-elif [ "$ME" = "here" ]; then
-  export PATH=${HOME}/anaconda2/bin:$PATH
 fi
 
 # ==============================================================================
@@ -45,6 +46,11 @@ fi
 if [ "$ME" = "laptop" ]; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
   source /usr/local/bin/virtualenvwrapper.sh
+fi
+if [ "$ME" = "here_trappist" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  source ${HOME}/.local/bin/virtualenvwrapper.sh
+  export PATH=${HOME}/.local/bin/:$PATH
 fi
 
 # ==============================================================================
