@@ -44,7 +44,6 @@ fi
 # = Virtualenv/VirtualenvWrapper
 # ==============================================================================
 if [ -e /usr/local/bin/virtualenvwrapper.sh ] ; then
-  echo "found file"
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
   source /usr/local/bin/virtualenvwrapper.sh
 elif [ -e ${HOME}/.local/bin/virtualenvwrapper.sh ] ; then
