@@ -44,7 +44,7 @@ fi
 # = Virtualenv/VirtualenvWrapper
 # ==============================================================================
 if [ -e /usr/local/bin/virtualenvwrapper.sh ] ; then
-  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
   source /usr/local/bin/virtualenvwrapper.sh
 elif [ -e ${HOME}/.local/bin/virtualenvwrapper.sh ] ; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
