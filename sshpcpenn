@@ -1,1 +1,0 @@
-ssh -Y -t lxplus.cern.ch ssh pc-penn-$1.cern.ch

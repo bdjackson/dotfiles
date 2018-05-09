@@ -1,5 +1,0 @@
-ssh -f -N lxplus.cern.ch -L 2000:pc-penn-$1.cern.ch:22 
-pid=`ps auxw | grep -v grep | grep 'ssh -f -N' | grep '\-L 2000' | awk '{print $2}'`
-echo $pid
-scp -r -o 'UserKnownHostsFile /dev/null' -o 'StrictHostKeyChecking no' -P 2000 localhost:$2 .
-kill $pid
