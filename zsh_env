@@ -52,22 +52,6 @@ elif [ -e ${HOME}/.local/bin/virtualenvwrapper.sh ] ; then
   export PATH=${HOME}/.local/bin/:$PATH
 fi
 
-# if [ "$ME" = "laptop" ]; then
-#   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-#   source /usr/local/bin/virtualenvwrapper.sh
-# elif [ "$ME" = "here_laptop" ]; then
-#   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-#   source /usr/local/bin/virtualenvwrapper.sh
-# elif [ "$ME" = "here_trappist" ]; then
-#   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-#   source ${HOME}/.local/bin/virtualenvwrapper.sh
-#   export PATH=${HOME}/.local/bin/:$PATH
-# elif [ "$ME" = "here_trappist" ]; then
-#   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-#   source ${HOME}/.local/bin/virtualenvwrapper.sh
-#   export PATH=${HOME}/.local/bin/:$PATH
-# fi
-
 # ==============================================================================
 # = Personal settings
 # ==============================================================================
