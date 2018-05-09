@@ -3,7 +3,7 @@
 # ==============================================================================
 # case "$HOSTNAME" in
 case "`hostname`" in
-  bjackson*)
+  bjackson*|Bretts-MacBook-Pro-2.local)
   export ME="laptop"
   ;;
   2usmbjackson.*)
