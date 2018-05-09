@@ -1,24 +1,33 @@
+# This is Git's per-user configuration file.
 [user]
-	email = brett.jackson@here.com
-	name = Brett Jackson
-[alias]
-  ec = config --global -e
-  co = checkout
-
-  d = diff
-  ds = diff --stat
-  dc = diff --cached
-
-  save = !git add -A && git commit -m 'SAVEPOINT'
-  wip = commit -am 'Work In Progress'
-
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-
-  cob = checkout -b
-  wta = worktree add 
-
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-
+    name = Brett Jackson
+    email = brett.jackson@here.com
 [push]
-	default = simple
+    default = simple
+[alias]
+    ec = config --global -e
+    co = checkout
+
+    d = diff
+    ds = diff --stat
+    dc = diff --cached
+
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    wip = commit -am 'Work In Progress'
+
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+    cob = checkout -b
+    wta = worktree add
+
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+    statsu = status
+    commti = commit
+    psuh = push
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
