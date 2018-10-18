@@ -37,6 +37,9 @@ for template_file ( ${ZDOTDIR:-${HOME}}/.zim/templates/* ); do
 done
 ```
 
+Modify `~/.zlogin`:
+Replace: `${zim_mods}/syntax-highlighting/external/highlighters/**/*.zsh` with `${zim_mods}/syntax-highlighting/external/highlighters/**^test-data/*.zsh`
+
 Open a new session and finalize instalation
 ```
 source ${ZDOTDIR:-${HOME}}/.zlogin

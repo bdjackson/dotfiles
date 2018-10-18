@@ -6,7 +6,9 @@ Setup borrowed from [pyimagesearch](http://www.pyimagesearch.com/2015/06/15/inst
 Step 1: Install python from Homebrew
 ====================================
 ```
-brew install python
+brew install python2
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f2a764ef944b1080be64bd88dca9a1d80130c558/Formula/python.rb
+# brew install python
 ```
 
 
@@ -91,69 +93,22 @@ pip install --upgrade exifread
 
 Prepare to install OpenCV
 =========================
-```
-brew install cmake pkg-config
-brew install jpeg libpng libtiff openexr
-brew install eigen tbb
-```
-
-
 Install OpenCV
 ==============
 ```
-cd ~/local
-git clone https://github.com/Itseez/opencv.git
-cd opencv
-git checkout 3.0.0
-```
+deactivate
+brew install opencv
 
-```
-cd ~/local
-git clone https://github.com/Itseez/opencv_contrib
-cd opencv_contrib
-git checkout 3.0.0
-```
-
-```
-cd ~/local/opencv
-mkdir build
-cd build
-```
-
-
-```
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
-  -D CMAKE_INSTALL_PREFIX=/usr/local \
-	-D PYTHON2_PACKAGES_PATH=~/.virtualenvs/cv/lib/python2.7/site-packages \
-	-D PYTHON2_LIBRARY=/usr/local/Cellar/python/2.7.10/Frameworks/Python.framework/Versions/2.7/bin \
-	-D PYTHON2_INCLUDE_DIR=/usr/local/Frameworks/Python.framework/Headers \
-	-D PYTHON3_PACKAGES_PATH=~/.virtualenvs/cv3/lib/python3.5/site-packages \
-	-D PYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5m.dylib \
-	-D PYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/include/python3.5m \
-	-D INSTALL_C_EXAMPLES=ON \
-	-D INSTALL_PYTHON_EXAMPLES=ON \
-	-D BUILD_EXAMPLES=ON \
-	-D BUILD_opencv_python3=ON \
-	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..
-```
-
-```
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
-	-D CMAKE_INSTALL_PREFIX=/usr/local \
-	-D PYTHON3_PACKAGES_PATH=~/.virtualenvs/cv3/lib/python3.5/site-packages \
-	-D PYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5m.dylib \
-	-D PYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.0/Frameworks/Python.framework/Versions/3.5/include/python3.5m \
-	-D INSTALL_C_EXAMPLES=ON \
-	-D INSTALL_PYTHON_EXAMPLES=ON \
-	-D BUILD_EXAMPLES=ON \
-	-D BUILD_opencv_python3=ON \
-	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..
+workon local # or whichever virtual env you want
+pip3 install opencv-python
 ```
 
 Install TensorFlow
 ==================
 ```
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.10.0-py3-none-any.whl
-pip install --upgrade $TF_BINARY_URL
+pip3 install --upgrade tensorflow
+
+# export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.10.0-py3-none-any.whl
+# pip install --upgrade $TF_BINARY_URL
 ```
 
