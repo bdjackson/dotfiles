@@ -120,3 +120,11 @@ fi
 if [[ "$ME" = "here_laptop" ]]; then
   export PATH="/usr/local/sbin:$PATH"
 fi
+
+# # ==============================================================================
+# # = Add kubectl to env
+# # ==============================================================================
+# if [[ "$ME" = "here_trappist" ]] ; then
+#   export KUBECONFIG=$KUBECONFIG:~/.kube/config
+#   export KUBECONFIG=$KUBECONFIG:~/.kube/config-deepcto
+# fi
