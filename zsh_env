@@ -2,26 +2,34 @@
 # = Resolve this computer - save as $ME
 # ==============================================================================
 # case "$HOSTNAME" in
+echo "`hostname`"
 case "`hostname`" in
   bjackson*|Bretts-MacBook-Pro-2.local)
+  echo "ME = laptop"
   export ME="laptop"
   ;;
-  2usmbjackson.*)
+  2usmbjackson1*)
+  echo "ME = here_laptop"
   export ME="here_laptop"
   ;;
   orion)
+  echo "ME = orion"
   export ME="here_orion"
   ;;
   europa)
+  echo "ME = europa"
   export ME="here_europa"
   ;;
   jupiter)
+  echo "ME = jupiter"
   export ME="here_jupiter"
   ;;
   trappist-1)
+  echo "ME = trappist"
   export ME="here_trappist"
   ;;
   *)
+  echo "ME = unknown"
   export ME=""
   ;;
 esac
@@ -38,6 +46,7 @@ if [ "$ME" = "laptop" ]; then
   export PATH=/usr/local/bin:$PATH
 elif [ "$ME" = "here_laptop" ]; then
   export PATH=/usr/local/bin:$PATH
+  export PATH=${HOME}/.local/bin:$PATH
 fi
 
 # ==============================================================================
@@ -74,23 +83,31 @@ fi
 # ==============================================================================
 source ${HOME}/.zsh_aliases
 
+# # ==============================================================================
+# # = Set up spark
+# # ==============================================================================
+# if [ "$ME" = "here_laptop" ]; then
+#   export SPARK_HOME="/usr/local/Cellar/apache-spark/1.6.1/libexec/"
+#   export PATH=$SPARK_HOME/bin:$PATH
+# 
+#   export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$SPARKHOME/python/:$PYTHONPATH
+# 
+#   # used for pyspark in a jupyter notebook
+#   export PACKAGES="com.databricks:spark-csv_2.11:1.4.0"
+#   export PYSPARK_SUBMIT_ARGS="--packages ${PACKAGES} pyspark-shell"
+# elif [ "$ME" = "here_jupiter" ]; then
+#   export SPARK_HOME=/usr/local/spark
+#   export PATH=$SPARK_HOME/bin:$PATH
+# 
+#   umask 002
+# fi
+
 # ==============================================================================
-# = Set up spark
+# = Set up python path
 # ==============================================================================
 if [ "$ME" = "here_laptop" ]; then
-  export SPARK_HOME="/usr/local/Cellar/apache-spark/1.6.1/libexec/"
-  export PATH=$SPARK_HOME/bin:$PATH
-
-  export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$SPARKHOME/python/:$PYTHONPATH
-
-  # used for pyspark in a jupyter notebook
-  export PACKAGES="com.databricks:spark-csv_2.11:1.4.0"
-  export PYSPARK_SUBMIT_ARGS="--packages ${PACKAGES} pyspark-shell"
-elif [ "$ME" = "here_jupiter" ]; then
-  export SPARK_HOME=/usr/local/spark
-  export PATH=$SPARK_HOME/bin:$PATH
-
-  umask 002
+  export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.6/site-packages/
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 fi
 
 # ==============================================================================
@@ -106,13 +123,6 @@ fi
 # ==============================================================================
 export PATH=/usr/local/cuda-8.0/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64/:$LD_LIBRARY_PATH
-
-# ==============================================================================
-# = Set up rbenv for ruby
-# ==============================================================================
-if [[ "$ME" = "here_laptop" ]]; then
-  eval "$(rbenv init -)"
-fi
 
 # ==============================================================================
 # = Add sbin to path -- wanted by homebrew
