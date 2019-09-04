@@ -26,24 +26,47 @@ set -o ignoreeof
 
 
 # ==============================================================================
-# = Add /usr/local/bin and /usr/local/sbin to path -- wanted by homebrew
+# = Helper functions for setting up environment
 # ==============================================================================
-if [[ -e /usr/local/bin ]]; then
-  export PATH=/usr/local/bin:$PATH
-fi
-# if [[ "$ME" = "here_laptop" ]]; then
-if [[ -e /usr/local/sbin ]]; then
-  export PATH="/usr/local/sbin:$PATH"
-fi
+function safe_add_to_path {
+  if [[ -e ${1} ]] ; then
+    export PATH=${1}:${PATH}
+  fi
+}
+
+function safe_alias {
+  if [[ -e ${1} ]] ; then
+    alias ${1}=${2}
+  fi
+}
+
+
+# ==============================================================================
+# = Add ${HOME}/anaconda3/bin to path -- wanted by anaconda
+# ==============================================================================
+safe_add_to_path ${HOME}/anaconda3/bin
 
 
 # ==============================================================================
 # = Add /opt/local/bin to path -- wanted by macports
 # ==============================================================================
-# if [[ "$ME" = "vw_laptop" ]]; then
-if [[ -e /opt/local/bin:$PATH ]]; then
-  export PATH="/opt/local/bin:$PATH"
-fi
+safe_add_to_path /opt/local/bin
+
+
+# ==============================================================================
+# = Add /usr/local/bin and /usr/local/sbin to path -- wanted by homebrew
+# ==============================================================================
+safe_add_to_path /usr/local/bin
+safe_add_to_path /usr/local/sbin
+
+
+# ==============================================================================
+# = Python aliases to have some extra control
+# ==============================================================================
+safe_alias ${HOME}/anaconda3/bin/python conda_python
+safe_alias ${HOME}/anaconda3/bin/python3 conda_python3
+safe_alias /opt/local/bin/python opt_python
+safe_alias /opt/local/bin/python3 opt_python2
 
 
 # ==============================================================================
@@ -52,10 +75,12 @@ fi
 if [ -e /usr/local/bin/virtualenvwrapper.sh ] ; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
   source /usr/local/bin/virtualenvwrapper.sh
+
 elif [ -e ${HOME}/.local/bin/virtualenvwrapper.sh ] ; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
   source ${HOME}/.local/bin/virtualenvwrapper.sh
   export PATH=${HOME}/.local/bin/:$PATH
+
 elif [ -e /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin/virtualenvwrapper.sh ] ; then
   export VIRTUALENVWRAPPER_PYTHON=/opt/local/bin/python3
   source /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin/virtualenvwrapper.sh
@@ -83,15 +108,6 @@ source ${HOME}/.zsh_aliases
 
 
 # ==============================================================================
-# = Set up python path
-# ==============================================================================
-if [ "$ME" = "here_laptop" ]; then
-  export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.6/site-packages/
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-fi
-
-
-# ==============================================================================
 # = Set up CUDA
 # ==============================================================================
 if [[ -e /usr/local/cuda-8.0 ]] ; then
@@ -111,6 +127,15 @@ fi
 # # ==============================================================================
 # if [ "$ME" = "laptop" ]; then
 #   export PATH=/usr/local/bin:$PATH
+# fi
+
+
+# # ==============================================================================
+# # = Set up python path
+# # ==============================================================================
+# if [ "$ME" = "here_laptop" ]; then
+#   export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.6/site-packages/
+#   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 # fi
 
 
