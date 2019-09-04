@@ -8,25 +8,9 @@ case "`hostname`" in
   echo "ME = laptop"
   export ME="laptop"
   ;;
-  2usmbjackson1*)
-  echo "ME = here_laptop"
-  export ME="here_laptop"
-  ;;
-  orion)
-  echo "ME = orion"
-  export ME="here_orion"
-  ;;
-  europa)
-  echo "ME = europa"
-  export ME="here_europa"
-  ;;
-  jupiter)
-  echo "ME = jupiter"
-  export ME="here_jupiter"
-  ;;
-  trappist-1)
-  echo "ME = trappist"
-  export ME="here_trappist"
+  adminisurussmbp*|Adminisauruss*)
+  echo "ME = vw_laptop"
+  export ME="vw_laptop"
   ;;
   *)
   echo "ME = unknown"
@@ -34,20 +18,33 @@ case "`hostname`" in
   ;;
 esac
 
+
 # ==============================================================================
 # = Ignore <ctrl>-d to avoid inadvertantly quitting shell
 # ==============================================================================
 set -o ignoreeof
 
+
 # ==============================================================================
-# = python
+# = Add /usr/local/bin and /usr/local/sbin to path -- wanted by homebrew
 # ==============================================================================
-if [ "$ME" = "laptop" ]; then
+if [[ -e /usr/local/bin ]]; then
   export PATH=/usr/local/bin:$PATH
-elif [ "$ME" = "here_laptop" ]; then
-  export PATH=/usr/local/bin:$PATH
-  export PATH=${HOME}/.local/bin:$PATH
 fi
+# if [[ "$ME" = "here_laptop" ]]; then
+if [[ -e /usr/local/sbin ]]; then
+  export PATH="/usr/local/sbin:$PATH"
+fi
+
+
+# ==============================================================================
+# = Add /opt/local/bin to path -- wanted by macports
+# ==============================================================================
+# if [[ "$ME" = "vw_laptop" ]]; then
+if [[ -e /opt/local/bin:$PATH ]]; then
+  export PATH="/opt/local/bin:$PATH"
+fi
+
 
 # ==============================================================================
 # = Virtualenv/VirtualenvWrapper
@@ -59,7 +56,12 @@ elif [ -e ${HOME}/.local/bin/virtualenvwrapper.sh ] ; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
   source ${HOME}/.local/bin/virtualenvwrapper.sh
   export PATH=${HOME}/.local/bin/:$PATH
+elif [ -e /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin/virtualenvwrapper.sh ] ; then
+  export VIRTUALENVWRAPPER_PYTHON=/opt/local/bin/python3
+  source /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin/virtualenvwrapper.sh
+  export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin/:$PATH
 fi
+
 
 # ==============================================================================
 # = Personal settings
@@ -73,15 +75,44 @@ export GREP_COLOR='1;32' # bright green
 # Turn off sharing history across terminals - don't want to confuse sessions
 setopt no_share_history
 
-if [ "$ME" = "here_jupiter" ]; then
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HOME}/local/lib/
-fi
-
 
 # ==============================================================================
 # = Set up aliases
 # ==============================================================================
 source ${HOME}/.zsh_aliases
+
+
+# ==============================================================================
+# = Set up python path
+# ==============================================================================
+if [ "$ME" = "here_laptop" ]; then
+  export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.6/site-packages/
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+fi
+
+
+# ==============================================================================
+# = Set up CUDA
+# ==============================================================================
+if [[ -e /usr/local/cuda-8.0 ]] ; then
+  export PATH=/usr/local/cuda-8.0/bin:$PATH
+  export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64/:$LD_LIBRARY_PATH
+fi
+
+
+# ==============================================================================
+# ==============================================================================
+# = Graveyard
+# ==============================================================================
+# ==============================================================================
+
+# # ==============================================================================
+# # = Python
+# # ==============================================================================
+# if [ "$ME" = "laptop" ]; then
+#   export PATH=/usr/local/bin:$PATH
+# fi
+
 
 # # ==============================================================================
 # # = Set up spark
@@ -102,34 +133,6 @@ source ${HOME}/.zsh_aliases
 #   umask 002
 # fi
 
-# ==============================================================================
-# = Set up python path
-# ==============================================================================
-if [ "$ME" = "here_laptop" ]; then
-  export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.6/site-packages/
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-fi
-
-# ==============================================================================
-# = Set up vtk
-# ==============================================================================
-if [ "$ME" = "here_jupiter" ]; then
-  export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages/
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-fi
-
-# ==============================================================================
-# = Set up CUDA
-# ==============================================================================
-export PATH=/usr/local/cuda-8.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64/:$LD_LIBRARY_PATH
-
-# ==============================================================================
-# = Add sbin to path -- wanted by homebrew
-# ==============================================================================
-if [[ "$ME" = "here_laptop" ]]; then
-  export PATH="/usr/local/sbin:$PATH"
-fi
 
 # # ==============================================================================
 # # = Add kubectl to env

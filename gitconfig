@@ -31,3 +31,5 @@
     diff = auto
     interactive = auto
     status = auto
+[branch]
+	autosetuprebase = always
