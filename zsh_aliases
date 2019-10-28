@@ -5,3 +5,9 @@ alias vimo='vim -o'
 
 alias please='sudo $(fc -ln -1)'
 alias diffadd='$(fc -ln -1 | sed "s/diff/add/")'
+
+alias cel='conda env list'
+alias cact='conda activate'
+
+alias ml01='ssh bdjackson@vw-pp-ml01.healthharmony.local'
+alias mlexp01='ssh bdjackson@vw-pp-mlexp01.healthharmony.local'
