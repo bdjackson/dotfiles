@@ -1,25 +1,4 @@
 # ==============================================================================
-# = Resolve this computer - save as $ME
-# ==============================================================================
-# case "$HOSTNAME" in
-echo "`hostname`"
-case "`hostname`" in
-  bjackson*|Bretts-MacBook-Pro-2.local)
-  echo "ME = laptop"
-  export ME="laptop"
-  ;;
-  adminisurussmbp*|Adminisauruss*)
-  echo "ME = vw_laptop"
-  export ME="vw_laptop"
-  ;;
-  *)
-  echo "ME = unknown"
-  export ME=""
-  ;;
-esac
-
-
-# ==============================================================================
 # = Ignore <ctrl>-d to avoid inadvertantly quitting shell
 # ==============================================================================
 set -o ignoreeof
@@ -40,6 +19,11 @@ function safe_alias {
   fi
 }
 
+function set_display {
+  if [[ ${1} ]] ; then
+    export DISPLAY="localhost:${1}.0"
+  fi
+}
 
 # ==============================================================================
 # = Add ${HOME}/anaconda3/bin to path -- wanted by anaconda
@@ -66,13 +50,17 @@ safe_add_to_path /usr/local/sbin
 safe_alias ${HOME}/anaconda3/bin/python conda_python
 safe_alias ${HOME}/anaconda3/bin/python3 conda_python3
 safe_alias /opt/local/bin/python opt_python
-safe_alias /opt/local/bin/python3 opt_python2
+safe_alias /opt/local/bin/python3 opt_python3
 
 
 # ==============================================================================
 # = Virtualenv/VirtualenvWrapper
 # ==============================================================================
-if [ -e /usr/local/bin/virtualenvwrapper.sh ] ; then
+if [ -e /Users/jacksb17/Library/Python/3.11/bin/virtualenvwrapper.sh ] ; then
+  export VIRTUALENVWRAPPER_PYTHON=/opt/local/bin/python
+  source /Users/jacksb17/Library/Python/3.11/bin/virtualenvwrapper.sh
+
+elif [ -e /usr/local/bin/virtualenvwrapper.sh ] ; then
   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
   source /usr/local/bin/virtualenvwrapper.sh
 
@@ -105,6 +93,9 @@ setopt no_share_history
 # = Set up aliases
 # ==============================================================================
 source ${HOME}/.zsh_aliases
+if [[ -e ~/.zsh_local_aliases ]] ; then
+  source ${HOME}/.zsh_local_aliases
+fi
 
 
 # ==============================================================================
@@ -120,49 +111,4 @@ fi
 # ==============================================================================
 # = Graveyard
 # ==============================================================================
-# ==============================================================================
 
-# # ==============================================================================
-# # = Python
-# # ==============================================================================
-# if [ "$ME" = "laptop" ]; then
-#   export PATH=/usr/local/bin:$PATH
-# fi
-
-
-# # ==============================================================================
-# # = Set up python path
-# # ==============================================================================
-# if [ "$ME" = "here_laptop" ]; then
-#   export PYTHONPATH=$PYTHONPATH:${HOME}/.local/lib/python3.6/site-packages/
-#   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-# fi
-
-
-# # ==============================================================================
-# # = Set up spark
-# # ==============================================================================
-# if [ "$ME" = "here_laptop" ]; then
-#   export SPARK_HOME="/usr/local/Cellar/apache-spark/1.6.1/libexec/"
-#   export PATH=$SPARK_HOME/bin:$PATH
-# 
-#   export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$SPARKHOME/python/:$PYTHONPATH
-# 
-#   # used for pyspark in a jupyter notebook
-#   export PACKAGES="com.databricks:spark-csv_2.11:1.4.0"
-#   export PYSPARK_SUBMIT_ARGS="--packages ${PACKAGES} pyspark-shell"
-# elif [ "$ME" = "here_jupiter" ]; then
-#   export SPARK_HOME=/usr/local/spark
-#   export PATH=$SPARK_HOME/bin:$PATH
-# 
-#   umask 002
-# fi
-
-
-# # ==============================================================================
-# # = Add kubectl to env
-# # ==============================================================================
-# if [[ "$ME" = "here_trappist" ]] ; then
-#   export KUBECONFIG=$KUBECONFIG:~/.kube/config
-#   export KUBECONFIG=$KUBECONFIG:~/.kube/config-deepcto
-# fi

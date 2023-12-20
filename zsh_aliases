@@ -2,6 +2,8 @@ alias du='du -sh'
 
 alias vimO='vim -O'
 alias vimo='vim -o'
+alias nvimO='nvim -O'
+alias nvimo='nvim -o'
 
 alias please='sudo $(fc -ln -1)'
 alias diffadd='$(fc -ln -1 | sed "s/diff/add/")'
@@ -9,5 +11,11 @@ alias diffadd='$(fc -ln -1 | sed "s/diff/add/")'
 alias cel='conda env list'
 alias cact='conda activate'
 
-alias ml01='ssh bdjackson@vw-pp-ml01.healthharmony.local'
-alias mlexp01='ssh bdjackson@vw-pp-mlexp01.healthharmony.local'
+alias tb='tensorboard --logdir . --host 0.0.0.0'
+
+alias jpl='jupyter lab --ip 0.0.0.0'
+
+alias check_display='echo $DISPLAY'
+
+alias lol='git lol'
+alias lola='git lola'

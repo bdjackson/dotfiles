@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
     name = Brett Jackson
-    email = brett.jackson@here.com
+    email = brett.jackson@medtronic.com
 [push]
     default = simple
 [alias]
@@ -33,3 +33,7 @@
     status = auto
 [branch]
 	autosetuprebase = always
+[diff]
+	tool = vimdiff
+[init]
+	defaultBranch = main

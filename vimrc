@@ -3,75 +3,75 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" If this is a new environment, install Vundle, and vundle packages:
+" ------------------------------------------------------------------------------
+" Checkout vim-plug to .vim directory
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'wincent/Command-T'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'morhetz/gruvbox', { 'as': 'gruvbox' }
+Plug 'sainnhe/everforest'
+Plug 'lifepillar/vim-solarized8', {'as': 'solarized8'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tomasiser/vim-code-dark'
+Plug 'tpope/vim-fugitive'
+Plug 'jpalardy/vim-slime'
+" Plug 'klafyvel/vim-slime-cells'
+" Plug 'hanschen/vim-ipython-cell'
+Plug 'chrisbra/csv.vim'
+
+" Plug 'easymotion/vim-easymotion'
+" Plug 'preservim/nerdcommenter'
+
 "
-" Checkout Vundle to .vim directory
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
-" Within vim, install the plugins:
-" :PluginInstall
+" Don't reinstall or update every time
+" :PlugClean
+" :PlugUpdate
+" :PlugInstall
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"   call vundle#begin('~/some/path/here')
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'wincent/Command-T'
-Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use # https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " ------------------------------------------------------------------------------
-" Set background for gui version
-
-if has('gui_running')
-  syntax enable
-  set background=light
-  " set background=dark
-  colorscheme solarized
-else
-  set backspace=indent,eol,start
-endif
-
-if &diff
-  colorscheme evening
-endif
-
+" set background=dark
+" set background=light
+" colorscheme gruvbox
+" colorscheme solarized
+" colorscheme solarized8
+" colorscheme everforest
+" colorscheme codedark
+" colorscheme evening
+"
+" " Set background for gui version
+" if has('gui_running')
+"   syntax enable
+"   set background=light
+"   " set background=dark
+"   colorscheme solarized
+" else
+"   set backspace=indent,eol,start
+" endif
+"
+" if &diff
+"   colorscheme evening
+" endif
 
 " set file types for syntax coloring
 au BufNewFile,BufRead *.icc set filetype=cpp
+
+" ------------------------------------------------------------------------------
+" Set background for tmux version
+" if &term == 'screen' || &term == 'screen-256color'
+"   set background=dark
+" endif
+" set background=dark
 
 " ------------------------------------------------------------------------------
 scriptencoding utf-8
@@ -86,17 +86,17 @@ set noswapfile
 " Set leader key to ","
 " let mapleader=","
 
-" fix backspace
-if &term == "xterm" || &term == "xterm-256color" || &term == "screen"
-    set t_kb=
-    fixdel
-endif
+" map <S-Del> <C-h>
+" nmap <S-Del> <C-h>
+imap <S-Del> <C-h>
+cnoremap <S-Del> <C-h>
+
 
 "" " ------------------------------------------------------------------------------
 " use indentation of previous line
 set autoindent
 
-" use intelligent indentation for C
+" use intelligent indentation
 set smartindent
 
 " configure tabwidth and insert spaces instead of tabs
@@ -119,18 +119,18 @@ set shiftround
 " function to toggle number mode (relative or absolute)
 function! NumberToggle()
   if(&relativenumber == 1)
-    set number
+    set norelativenumber
   else
     set relativenumber
   endif
 endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <C-m> :call NumberToggle()<cr>
 
-" turn line numbers on
+" turn line numbers on and use relative number by default
 set number
-" set relativenumber
+set relativenumber
 
-" turn on ruler 
+" turn on ruler
 set ruler
 
 " highlight all matches for the last used pattern
@@ -138,6 +138,11 @@ set hls
 
 " show search matches as you type
 set incsearch
+
+set wildmenu "show all options in tab complete
+set foldmethod=indent "vs syntax
+set foldlevelstart=99
+" set updatetime=300 "Recommended for coc: shorten from 4000 default for better coc.nvim experience
 
 " do syntax coloring
 syntax on
@@ -155,7 +160,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp,*.cxx,*.h match BadWhitespace /\s\+$/
 " NOTE: when I open this file in some versions of vim, the tab character gets
 "       overwritten with different character.  To put it back do:
 "       <ctrl>v+u+25b8
-set listchars=eol:¬,tab:▸\ 
+set listchars=eol:¬,tab:▸\
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
@@ -220,10 +225,6 @@ set laststatus=2
 "endif
 set guifont=Source_Code_Pro:h9
 
-" " ------------------------------------------------------------------------------
-" "  snipMate setup
-" let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate.vim/snippets/"
-
 " ------------------------------------------------------------------------------
 " Enhanced keyboard mappings
 "
@@ -232,39 +233,41 @@ imap kj <Esc>
 
 " " in normal mode F2 will save the file
 " nmap <F2> :w<CR>
-" 
+"
 " " in insert mode F2 will exit insert, save, enters insert again
 " imap <F2> <ESC>:w<CR>i
-" 
+"
 " " switch between header/source with F4
 " map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-" 
+"
 " " recreate tags file with F5
 " map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
-" 
+"
 " " create doxygen comment
 " map <F6> :Dox<CR>
-" 
+"
 " " build using makeprg with <F7>
 " map <F7> :make<CR>
-" 
+"
 " " build using makeprg with <S-F7>
 " map <S-F7> :make clean all<CR>
-" 
+"
 " " goto definition with F12
 " map <F12> <C-]>
 
 " Allows writing with :W as well as :w
 :cnoreabbrev <expr> W getcmdtype()==':'&&getcmdline()=~#'^W'?'w':'W'
 
-" "" in diff mode we use the spell check keys for merging
-" "if &diff
-" "  " diff settings
-" "  map <M-Down> ]c
-" "  map <M-Up> [c
-" "  map <M-Left> do
-" "  map <M-Right> dp
-" "  map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
+" in diff mode we use the spell check keys for merging
+if &diff
+  " diff settings
+  map ] ]c
+  map [ [c
+  map <M-Down> ]c
+  map <M-Up> [c
+  map <M-Left> do
+  map <M-Right> dp
+  map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
 " "else
 " "  " spell settings
 " "  :setlocal spell spelllang=en
@@ -272,47 +275,24 @@ imap kj <Esc>
 " "  set spellfile=~/.vim/spellfile.add
 " "  map <M-Down> ]s
 " "  map <M-Up> [s
-" "endif
-" 
- " real tab in Makefiles
- " handled by after/ftplugin/make.vim
- autocmd FileType make setlocal noexpandtab
+endif
+"
+" real tab in Makefiles
+" handled by after/ftplugin/make.vim
+autocmd FileType make setlocal noexpandtab
 
 " ------------------------------------------------------------------------------
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
-" " TextMate style indenting
-" nmap <C-[> <<
-" nmap <C-]> >>
-" vmap <C-[> <gv
-" vmap <C-]> >gv
+" TextMate style indenting
+nmap <C-[> <<
+nmap <C-]> >>
+vmap <C-[> <gv
+vmap <C-]> >gv
 
 " switch between windows a bit more easily
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-" " Bubble single lines
-" " nmap <C-Up> ddkP
-" " nmap <C-Down> ddp
-" nmap <C-Up> [e
-" nmap <C-Down> ]e
-" " Bubble multiple lines
-" vmap <C-Up> [egv
-" vmap <C-Down> ]egv
-
-" common alignments
-if  exists(":Tabularize")
-  nmap <leader>a= :Tabularize /=<CR>
-  vmap <leader>a= :Tabularize /=<CR>
-  nmap <leader>a: :Tabularize /:<CR>
-  vmap <leader>a: :Tabularize /:<CR>
-  nmap <leader>afun :Tabularize /[(,}]<CR>
-  vmap <leader>afun :Tabularize /[(,}]<CR>
-endif
-
 
 " ------------------------------------------------------------------------------
 " Set tabstop, softtabstop and shiftwidth to the same value
@@ -326,7 +306,7 @@ function! Stab()
   endif
   call SummarizeTabs()
 endfunction
-  
+
 function! SummarizeTabs()
   try
     echohl ModeMsg
@@ -343,50 +323,44 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-" " ------------------------------------------------------------------------------
-" " Folding settings
-" set foldmethod=indent "fold based on indent
-" set foldnestmax=10    "deepest fold is 10 levels
-" set nofoldenable      "dont fold by default
-" set foldlevel=1       "this is just what i use
-" 
 " ------------------------------------------------------------------------------
 " Edit my vimrc in a new tab
 nmap <leader>ev :tabedit $MYVIMRC<CR>
 nmap <leader>sv :so $MYVIMRC<CR>
 
-" " ------------------------------------------------------------------------------
-" "
-" " set t_te= t_ti=
-" " set t_te= t_ti=
-" " set t_ti= t_te=
-" " au VimLeave * :!clear
-" "
 " ------------------------------------------------------------------------------
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    " hi statusline ctermfg=darkred
-    hi statusline ctermfg=magenta
-  elseif a:mode == 'r'
-    hi statusline ctermfg=blue
-  else
-    hi statusline guibg=purple
-  endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertChange * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline ctermfg=lightgreen
-
-hi User1 term=reverse
-
-
-autocmd WinLeave *  hi statuslineNC ctermfg=grey ctermbg=black
-au CmdwinEnter * hi statusline ctermfg=lightblue
-au CmdwinLeave * hi statusline ctermfg=lightgreen
-
-
 let g:tex_flavor='latex'
+let vim_markdown_preview_github=1
 
 " ------------------------------------------------------------------------------
-let vim_markdown_preview_github=1
+"  NERDTree related settings
+" Toggle NERDTree
+map <c-n> :NERDTreeToggle<CR>
+
+" Close vim if the only window left is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" ------------------------------------------------------------------------------
+noremap <Space> <Nop>
+let g:netrw_winsize = 20
+let mapleader = " "
+let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":0.1"}
+let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+" let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":4.1"}
+let g:slime_python_ipython = 1
+let g:slime_dont_ask_default = 1
+let g:netrw_banner=0
+
+let g:slime_cell_delimiter = "#%%"
+
+noremap <leader>ss :SlimeSend<cr>
+nmap <leader>sc <Plug>SlimeSendCell
+
+" ------------------------------------------------------------------------------
+nnoremap , :buffers<cr>:buffer<space>
+
+
+" ------------------------------------------------------------------------------
+set clipboard^=unnamed,unnamedplus
