@@ -25,22 +25,7 @@ brew install svn
 ## Set up ZIM
 
 ```
-git clone --recursive https://github.com/zimfw/zimfw.git ${ZDOTDIR:-${HOME}}/.zim
-cd ${ZDOTDIR:-${HOME}}/.zim
-git checkout zsh-5.0
-
-setopt EXTENDED_GLOB
-for template_file ( ${ZDOTDIR:-${HOME}}/.zim/templates/* ); do
-  user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
-  touch ${user_file}
-  ( print -rn "$(<${template_file})$(<${user_file})" >! ${user_file} ) 2>/dev/null
-done
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 ```
 
-Modify `~/.zlogin`:
-Replace: `${zim_mods}/syntax-highlighting/external/highlighters/**/*.zsh` with `${zim_mods}/syntax-highlighting/external/highlighters/**^test-data/*.zsh`
-
-Open a new session and finalize instalation
-```
-source ${ZDOTDIR:-${HOME}}/.zlogin
-```
+Modify any modules you would like in `~/.zimrc`
